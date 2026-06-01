@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@scalar/express-api-reference": "^0.9.19",
     "express": "^4.18.2",
     "fs": "^0.0.1-security"
   },
