@@ -19,6 +19,40 @@ export const openApiSpec = {
         },
       },
     },
+    "/vehicles/search": {
+      get: {
+        summary: "Search vehicles",
+        parameters: [
+          {
+            name: "make",
+            in: "query",
+            required: false,
+            schema: {
+              type: "string",
+            },
+          },
+          {
+            name: "model",
+            in: "query",
+            required: false,
+            schema: {
+              type: "string",
+            },
+          },
+        ],
+        responses: {
+          "200": {
+            description: "Vehicles matching the search criteria",
+          },
+          "400": {
+            description: "No search query parameters provided",
+          },
+          "404": {
+            description: "No vehicles found matching the search criteria",
+          },
+        },
+      },
+    },
     "/vehicles/make/{make}": {
       get: {
         summary: "Get vehicles by make",

@@ -31,6 +31,33 @@ app.get("/vehicles", (req: Request, res: Response) => {
 
 });
 
+app.get("/vehicles/search", (req: Request, res: Response) => {
+  try {
+    const { make, model } = req.query;
+    const hasMake = typeof make === "string" && make.trim() !== "";
+    const hasModel = typeof model === "string" && model.trim() !== "";
+
+    let vehicles = vehicleRepository.getAll();
+    if (hasMake) {
+      vehicles = searchByMake(vehicles, make);
+    }
+
+    if (hasModel) {
+      vehicles = searchByModel(vehicles, model);
+    }
+
+    if (vehicles.length === 0) {
+      res.status(404).json({ message: "No vehicles found matching the search criteria." });
+      return;
+    }
+
+    res.json(vehicles);
+  } catch (err) {
+    console.error("Error searching vehicles:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 app.get("/vehicles/make/:make", (req: Request, res: Response) => {
   try {
     const make = req.params.make;
