@@ -22,13 +22,13 @@ app.get("/", (req: Request, res: Response) => {
 
 app.get("/vehicles", (req: Request, res: Response) => {
   try {
+    //TODO: Implement pagination and sorting in the future
     const vehicles = vehicleRepository.getAll();
     res.json(vehicles);
   } catch (err) {
     console.error("Error fetching vehicles:", err);
     res.status(500).json({ message: "Internal server error" });
   }
-
 });
 
 app.get("/vehicles/search", (req: Request, res: Response) => {
@@ -61,11 +61,6 @@ app.get("/vehicles/search", (req: Request, res: Response) => {
 app.get("/vehicles/make/:make", (req: Request, res: Response) => {
   try {
     const make = req.params.make;
-    //Potential improvements:
-    // Sorting
-    // caching 
-    // pagination
-    // validation
     
     const vehicles = searchByMake(vehicleRepository.getAll(), make);
     if (vehicles.length === 0) {

@@ -32,6 +32,14 @@ Updated the vehicle model to include:
 Tests can be run with `npm run test`
 A simple unit test suite is included for the lookup utility functions in `tests/utils/vehicle.test.ts`. 
 
+## Future Improvements
+As I was limited on time unfortunately, there's a few improvements I'd have made but didn't have time to implement. 
+
+- Sorting
+- Caching - Rather than fetching the entire set of cars each time, cache the response. 
+Especially in a real world application 
+- Pagination - Return a smaller set of results interatively. Reduce UI load times, reduce server load etc.
+- Linting
 
 -----------------------------------------------------------------------------
 
